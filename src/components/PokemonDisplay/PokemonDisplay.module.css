@@ -1,0 +1,150 @@
+.card {
+    width: 100%;
+}
+
+/* HEADER */
+
+.card_header {
+    margin-bottom: 24px;
+    padding: 20px;
+
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top,
+            /* #ff6b57 0%,
+            #d92f57 72%); */
+            rgb(199, 113, 27) 0%,
+            rgb(206, 41, 23) 100%);
+             border-top: 2px solid #ff95a8;
+            border-bottom: 2px solid #86001f;
+            box-shadow: 0 12px 30px rgba(217, 47, 87, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .card_header_text {
+        text-align: center;
+        color: #fff6db;
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        font-weight: 800;
+        letter-spacing: 1px;
+        overflow-wrap: break-word;
+    }
+
+
+    .card_body {
+        position: relative;
+        width: 100%;
+        height: clamp(320px, 65vw, 500px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 32px;
+        border: 2px solid rgba(130, 100, 255, 0.25);
+        background: linear-gradient(180deg,
+            rgba(27, 20, 63, 1) 0%,
+            rgba(8, 11, 27, 1) 100%);
+        box-shadow: inset 0 0 50px rgba(132, 0, 255, 0.16),
+        0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+
+    .card_grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px),
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px);
+
+        background-size: 40px 40px;
+        opacity: 0.5;
+        z-index: 1;
+    }
+
+    /* GLOW */
+
+    .card_glow {
+        position: absolute;
+
+        width: 320px;
+        height: 320px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(circle,
+            rgba(132, 0, 255, 0.55) 0%,
+            rgba(132, 0, 255, 0.2) 40%,
+            rgba(132, 0, 255, 0) 75%);
+
+        filter: blur(28px);
+
+        z-index: 1;
+    }
+
+    /* FLOOR */
+
+    .card_floor {
+        position: absolute;
+
+        bottom: 40px;
+
+        width: 280px;
+        height: 40px;
+
+        border-radius: 50%;
+
+        background: radial-gradient(ellipse at center,
+            rgba(92, 42, 185, 0.459) 0%,
+            rgba(100, 41, 167, 0.1) 70%,
+            transparent 100%);
+
+        filter: blur(8px);
+
+        z-index: 1;
+    }
+
+    /* IMAGE */
+
+    .pokemon_image {
+        position: relative;
+
+        width: clamp(180px, 55vw, 300px);
+
+        z-index: 2;
+
+        transition: 
+        filter 0.35s ease,
+        transform 0.35s ease;
+
+        animation: floatPokemon 3s ease-in-out infinite;
+    }
+
+    /* HIDDEN STATE */
+
+    .hidden {
+        filter: brightness(0) contrast(0.9) drop-shadow(0 0 20px rgba(80, 5, 151, 0.9));
+    }
+
+    /* SHOW STATE */
+
+    .show {
+        filter: drop-shadow(0 0 20px rgba(80, 5, 151, 0.9));
+    }
+
+    /* FLOAT ANIMATION */
+
+    @keyframes floatPokemon {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
