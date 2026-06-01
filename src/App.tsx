@@ -1,9 +1,9 @@
 import { useGameManager } from "./hooks/use-game-manager";
+import { Container } from "./components/Container/Container";
 import PokemonDisplay from "./components/PokemonDisplay/PokemonDisplay";
 import PokemonForm from "./components/PokemonForm/PokemonForm";
 import PokemonResults from "./components/PokemonResults/PokemonResults";
 import "./App.css";
-import { Container } from "./components/Container/Container";
 
 const App = () => {
   const {
@@ -14,6 +14,7 @@ const App = () => {
     gameState,
     handlePokemonNameSubmit,
   } = useGameManager();
+  
 
   if (isLoading) {
     return <div className="text-center">Cargando pokémon...</div>;
@@ -35,6 +36,8 @@ const App = () => {
         <PokemonForm
           gameState={gameState}
           handlePokemonNameSubmit={handlePokemonNameSubmit}
+          loadNewPokemon={loadNewPokemon}
+
         />
       ) : (
         <PokemonResults loadNewPokemon={loadNewPokemon} gameState={gameState} />

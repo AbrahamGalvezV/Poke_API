@@ -1,12 +1,20 @@
 
+.input_wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
 .form_card_input {
     width: 100%;
-    padding: clamp(14px, 3vw, 20px);
+    padding:
+        clamp(14px, 3vw, 20px)
+        clamp(60px, 8vw, 80px);
     margin: clamp(12px, 3vw, 20px) 0;
-    
+
     border-radius: clamp(14px, 3vw, 20px);
     border: 2px solid rgba(130, 100, 255, 0.25);
-    
+
     background:
         linear-gradient(
             180deg,
@@ -15,12 +23,12 @@
         );
     box-shadow:
         inset 0 0 50px rgba(132, 0, 255, 0.16),
-        0 25px 60px rgba(0,0,0,0.45);
-
+        0 25px 60px rgba(0, 0, 0, 0.45);
+        
+    color: white;
     font-size: clamp(1.1rem, 3vw, 1.25rem);
     letter-spacing: 0.04em;
     text-align: center;
-
     outline: none;
 
     transition:
@@ -30,47 +38,117 @@
 }
 
 .form_card_input::placeholder {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255, 255, 255, 0.4);
 }
 
-.form_card_input::focus {
-    background-color: rgba(170, 120, 255, 0.8);
-    box-shadow: 
+.form_card_input:focus {
+    border-color: rgba(170, 120, 255, 0.8);
+
+    box-shadow:
         inset 0 0 50px rgba(132, 0, 255, 0.22),
         0 0 20px rgba(132, 0, 255, 0.35),
-        0 25px 60px rgba(0,0,0,0.45);
-    transform: translateY(-1px);
+        0 25px 60px rgba(0, 0, 0, 0.45);
 }
 
-.form_card_btn {
+
+.grid_btn {
+    display: flex;
     width: 100%;
     padding: clamp(14px, 3vw, 20px);
-    
-    border-radius: clamp(14px, 3vw, 20px);
+    justify-content: center;
+    align-items: center;
+
     border: 2px solid rgba(130, 100, 255, 0.25);
+    border-radius: clamp(14px, 3vw, 20px);
+
+    cursor: pointer;
+    color: #fff6db;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+
     background:
         linear-gradient(
             180deg,
-            /* #ff6b57 0%,
-            #d92f57 72% */
             rgb(199, 113, 27) 0%,
             rgb(206, 41, 23) 100%
         );
+
     box-shadow:
-        inset 0 0 50px rgba(255, 0, 30, 0.374),
-        0 25px 60px rgba(0,0,0,0.45);
-
-        color: #fff6db;
-        /* font-size: clam(1.3rem, 4vw, 2rem); */
-    font-size: clamp(1.1rem, 3vw, 1.25rem);
-    letter-spacing: 0.04em;
-    text-align: center;
-
-    outline: none;
+        inset 0 0 40px rgba(255, 0, 30, 0.22),
+        0 12px 30px rgba(0, 0, 0, 0.35);
 
     transition:
+        transform 0.2s ease,
         border-color 0.25s ease,
         box-shadow 0.25s ease,
-        transform 0.2s ease;
-        
+        opacity 0.2s ease;
+}
+
+
+.grid_btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    border-color: rgba(255, 180, 180, 0.5);
+
+    box-shadow:
+        inset 0 0 50px rgba(255, 0, 30, 0.3),
+        0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+
+.grid_btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+
+.grid_btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+.input_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(42px, 10vw, 52px);
+    height: clamp(42px, 10vw, 52px);
+
+
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #fff6db;
+    
+    background: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input_icon:hover {
+    transform:
+        translateY(-50%)
+        scale(1.05);
+}
+
+
+.left_icon {
+    left: clamp(10px, 2vw, 16px);
+}
+
+
+.right_icon {
+    right: clamp(10px, 2vw, 16px);
+}
+
+
+.icon {
+    width: clamp(20px, 4vw, 28px);
+    height: clamp(20px, 4vw, 28px);
 }

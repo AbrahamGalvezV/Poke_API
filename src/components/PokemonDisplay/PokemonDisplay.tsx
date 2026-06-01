@@ -17,22 +17,19 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState }: Props) => {
 
   return (
     <div className={styles.card}>
-      {/* HEADER */}
+
       <div className={styles.card_header}>
         <h1 className={styles.card_header_text}>
           {showAnswer ? name?.toUpperCase() : "¿CUÁL ES ESTE POKÉMON?"}
         </h1>
       </div>
 
-      {/* DISPLAY */}
       <div className={styles.card_body}>
-        {/* GRID */}
+
         <div className={styles.card_grid}></div>
 
-        {/* GLOW */}
         <div className={styles.card_glow}></div>
 
-        {/* FLOOR */}
         <div className={styles.card_floor}></div>
 
         {isLoading ? (
