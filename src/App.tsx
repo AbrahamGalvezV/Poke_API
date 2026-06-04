@@ -13,6 +13,8 @@ const App = () => {
     isLoading,
     gameState,
     handlePokemonNameSubmit,
+    handlePokemonLevel,
+    level,
   } = useGameManager();
   
 
@@ -24,12 +26,14 @@ const App = () => {
     return <div className="alert alert-danger text-center">{error}</div>;
   }
 
+
   return (
     <Container>
       <PokemonDisplay
         pokemon={pokemon}
         isLoading={isLoading}
         gameState={gameState}
+        level={level}
       />
 
       {gameState === "playing" ? (
@@ -37,6 +41,7 @@ const App = () => {
           gameState={gameState}
           handlePokemonNameSubmit={handlePokemonNameSubmit}
           loadNewPokemon={loadNewPokemon}
+          handlePokemonLevel={handlePokemonLevel}
 
         />
       ) : (

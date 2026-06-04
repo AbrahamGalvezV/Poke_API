@@ -20,6 +20,7 @@ export const useGameManager = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [level, setLevel] = useState<string>("Fácil");
 
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
 
@@ -36,6 +37,10 @@ export const useGameManager = () => {
     },
     [pokemon],
   );
+
+  const handlePokemonLevel = (level:string) => {
+    setLevel(level)
+  } 
 
   const loadNewPokemon = useCallback(async () => {
     setIsLoading(true);
@@ -62,5 +67,7 @@ export const useGameManager = () => {
     loadNewPokemon,
     handlePokemonNameSubmit,
     gameState,
+    handlePokemonLevel,
+    level,
   };
 };

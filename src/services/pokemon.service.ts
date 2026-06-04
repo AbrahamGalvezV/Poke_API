@@ -14,6 +14,7 @@ const MAX_POKEMON_COUNT = 151;
 
 // await fakePromise(null, 3000); incluir dentro de getRandomIntInclusive
 
+
 const getRandomIntInclusive = (min: number, max: number): number => {
   min = Math.ceil(min);
   max = Math.floor(max);

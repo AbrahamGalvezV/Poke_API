@@ -30,6 +30,11 @@
         overflow-wrap: break-word;
     }
 
+    .card_header_level {
+        color: #fff6db;
+        text-align: center;
+        font-size: clamp(1rem, 3vw, 1.25rem);
+    }
 
     .card_body {
         position: relative;
