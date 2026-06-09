@@ -1,9 +1,7 @@
-import { useState } from "react";
 
-const [selectedLevel, setSelectedLevel] = useState(levels[0]);
 
 // objeto con la info
-const levels = [
+export const levels = [
   {level: 'I Kanto', count: 151}, 
   {level: 'II Johto', count: 251},
   {level: 'III Hoenn', count: 386},
@@ -15,9 +13,9 @@ const levels = [
   {level: 'IX Paldea', count: 1025},
 ] as const;
 
-console.log(levels.map((level) => level.count));
+// console.log(levels.map((level) => level.count));
 
-const handleSelectedLevel = (level: (typeof levels)[number]) => {
-  setSelectedLevel(level);
-  setIs
-}
+// const handleSelectedLevel = (level: (typeof levels)[number]) => {
+//   setSelectedLevel(level);
+//   setIs
+// }

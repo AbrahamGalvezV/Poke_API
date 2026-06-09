@@ -1,14 +1,13 @@
 import type { GameState } from "../../hooks/use-game-manager";
 import { useState } from "react";
 import styles from "./PokemonForm.module.css";
-
-export type Difficulty = "Fácil" | "Medio" | "Difícil" | "Experto";
+import { levels } from "../Container/PokemonLevels";
 
 interface Props {
   handlePokemonNameSubmit: (userInput: string) => void;
   gameState: GameState;
   loadNewPokemon: () => void;
-  handlePokemonLevel: (level: string) => void;
+  handlePokemonLevel: (levelName: string) => void;
 }
 
 const PokemonForm = ({
@@ -30,11 +29,9 @@ const PokemonForm = ({
     setInputValue("");
   };
 
-  const difficulties: Difficulty[] = ["Fácil", "Medio", "Difícil", "Experto"];
-
-  const handleSelect = (level: Difficulty) => {
+  const handleSelect = (level: string) => {
     setIsOpen(false);
-    handlePokemonLevel(level)
+    handlePokemonLevel(level);
   };
 
   return (
@@ -63,19 +60,19 @@ const PokemonForm = ({
         </button>
 
         {isOpen && (
-          <div
-            className={styles.input_dropdown_position}
-          >
-            {difficulties.map((level) => (
-              <button
-                type="button"
-                key={level}
-                onClick={() => handleSelect(level)}
-                className={styles.input_dropdown}
-              >
-                {level}
-              </button>
-            ))}
+          <div className={styles.input_dropdown_position}>
+            <div className={styles.input_dropdown_scroll}>
+              {levels.map((item) => (
+                <button
+                  type="button"
+                  key={item.level}
+                  onClick={() => handleSelect(item.level)}
+                  className={styles.input_dropdown}
+                >
+                  {item.level} | Pokémon: {item.count}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 

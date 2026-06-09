@@ -7,7 +7,10 @@ interface Props {
   pokemon: Pokemon | null;
   isLoading: boolean;
   gameState: GameState;
-  level: string;
+  level: {
+    level: string;
+    count: number;
+  };
 }
 
 const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
@@ -23,7 +26,9 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
         <h1 className={styles.card_header_text}>
           {showAnswer ? name?.toUpperCase() : "¿CUÁL ES ESTE POKÉMON?"}
         </h1>
-        <p className={styles.card_header_level}>Generación: {level}</p>
+        <p className={styles.card_header_level}>
+          Generación: {level.level} {level.count}
+        </p>
       </div>
       
 

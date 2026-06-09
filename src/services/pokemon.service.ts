@@ -1,7 +1,6 @@
 import type { Pokemon } from "../types/pokemon.interface";
 
 const POKEMON_API_URL = "https://pokeapi.co/api/v2/pokemon";
-const MAX_POKEMON_COUNT = 151;
 
 // Por si quiero crear una cuenta atras para darle emoción al resultado
 // const fakePromise = <T>(data: TaskController, delay: number = 1000): Promise<T> => {
@@ -22,8 +21,10 @@ const getRandomIntInclusive = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-export const getRandomPokemon = async (): Promise<Pokemon> => {
-  const randomId = getRandomIntInclusive(1, MAX_POKEMON_COUNT);
+export const getRandomPokemon = async (
+  maxPokemonCount: number, 
+): Promise<Pokemon> => {
+  const randomId = getRandomIntInclusive(1, maxPokemonCount);
 
   const response = await fetch(`${POKEMON_API_URL}/${randomId}`);
 

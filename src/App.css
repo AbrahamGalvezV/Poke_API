@@ -32,8 +32,6 @@ html, body, #root {
     overflow-x:hidden;
 }
 
-
-
 body {
   background:
     radial-gradient(circle at top, #1d2760 20%, #0b1020 50%),
@@ -45,6 +43,13 @@ body {
     position: relative;
 
   }
+
+.spinner {
+  display: block;
+  width: 70%;
+  max-width: 100vh; 
+  margin: 40px auto 0;
+}
 
 
 

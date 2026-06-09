@@ -1,11 +1,16 @@
 import { GameState } from "../../hooks/use-game-manager";
 import styles from "./PokemonResults.module.css";
 
+interface Props {
+  loadNewPokemon: () => void;
+  gameState: GameState;
+}
+
 const PokemonResults = ({ loadNewPokemon, gameState }: Props) => {
   if (gameState === GameState.Playing) {
-    return null;
+    return null; 
   }
-
+ 
   return (
     <div
       className={`alert-${
@@ -23,7 +28,7 @@ const PokemonResults = ({ loadNewPokemon, gameState }: Props) => {
           <h2 className={styles.result_incorrect}>¡Incorrecto!</h2>
         )} */}
       <button className={styles.reset_btn} onClick={loadNewPokemon}>
-        Volver a intentar
+        Siguiente Pokémon
       </button>
     </div>
   );

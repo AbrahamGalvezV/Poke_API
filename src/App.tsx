@@ -19,7 +19,9 @@ const App = () => {
   
 
   if (isLoading) {
-    return <div className="text-center">Cargando pokémon...</div>;
+    return <div className="text-center">
+      <img src="../img/pokemon.png" className="spinner"/>
+    </div>;
   }
 
   if (error) {
