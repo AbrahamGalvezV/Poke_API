@@ -34,7 +34,6 @@
 }
 
 .reset_btn {
-
     width: 100%;
     padding: clamp(14px, 3vw, 20px);
 
@@ -42,8 +41,6 @@
     border: 2px solid rgba(130, 100, 255, 0.25);
     background:
         linear-gradient(180deg,
-            /* #ff6b57 0%,
-            #d92f57 72% */
             rgb(199, 113, 27) 0%,
             rgb(206, 41, 23) 100%);
     box-shadow:
@@ -51,7 +48,6 @@
         0 25px 60px rgba(0, 0, 0, 0.45);
 
     color: #fff6db;
-    /* font-size: clam(1.3rem, 4vw, 2rem); */
     font-size: clamp(1.1rem, 3vw, 1.25rem);
     letter-spacing: 0.04em;
     text-align: center;

@@ -2,11 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import type { Pokemon } from "../types/pokemon.interface";
 import { pokemonService } from "../services/pokemon.service";
 import { levels } from "../components/Container/PokemonLevels";
-// export enum GameState {
-//     Playing = "playing",
-//     Correct = "correct",
-//     Wrong = "weong",
-// }
 
 export const GameState = {
   Playing: "playing",
@@ -28,6 +23,7 @@ export const useGameManager = () => {
   const [level, setLevel] = useState<Level>(levels[0]);
 
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+  
 
   const handlePokemonNameSubmit = useCallback(
     (userInput: string) => {
@@ -57,8 +53,18 @@ export const useGameManager = () => {
     setIsLoading(true);
     setError(null);
     setGameState(GameState.Playing);
+
+    const startTime = Date.now();
+
     try {
       const randomPokemon = await pokemonService.getRandomPokemon(level.count);
+
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, 400 - elapsedTime);
+
+      await new Promise((resolve) => setTimeout(resolve, remainingTime));
+
+
       setPokemon(randomPokemon);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");

@@ -1,6 +1,4 @@
 
-
-// objeto con la info
 export const levels = [
   {level: 'I Kanto', count: 151}, 
   {level: 'II Johto', count: 251},
@@ -12,10 +10,3 @@ export const levels = [
   {level: 'VIII Galar', count: 905},
   {level: 'IX Paldea', count: 1025},
 ] as const;
-
-// console.log(levels.map((level) => level.count));
-
-// const handleSelectedLevel = (level: (typeof levels)[number]) => {
-//   setSelectedLevel(level);
-//   setIs
-// }

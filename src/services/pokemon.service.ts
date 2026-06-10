@@ -34,7 +34,7 @@ export const getRandomPokemon = async (
 
   const data = await response.json();
 
-  console.log(data.name);
+  // console.log(data.name);
   
 
   return {

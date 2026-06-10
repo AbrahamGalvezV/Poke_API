@@ -76,11 +76,6 @@ const PokemonForm = ({
           </div>
         )}
 
-        {/* Aquí va el nivel */}
-        {/* <p className={styles.input_level}>
-          Dificultad seleccionada: <strong>{difficulty}</strong>
-        </p> */}
-
         <input
           type="text"
           className={styles.form_card_input}

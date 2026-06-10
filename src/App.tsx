@@ -3,6 +3,7 @@ import { Container } from "./components/Container/Container";
 import PokemonDisplay from "./components/PokemonDisplay/PokemonDisplay";
 import PokemonForm from "./components/PokemonForm/PokemonForm";
 import PokemonResults from "./components/PokemonResults/PokemonResults";
+import { Spinner } from "./components/Container/Spinner/Spinner";
 import "./App.css";
 
 const App = () => {
@@ -16,18 +17,14 @@ const App = () => {
     handlePokemonLevel,
     level,
   } = useGameManager();
-  
 
   if (isLoading) {
-    return <div className="text-center">
-      <img src="../img/pokemon.png" className="spinner"/>
-    </div>;
+    return <Spinner />;
   }
 
   if (error) {
     return <div className="alert alert-danger text-center">{error}</div>;
   }
-
 
   return (
     <Container>
@@ -44,7 +41,6 @@ const App = () => {
           handlePokemonNameSubmit={handlePokemonNameSubmit}
           loadNewPokemon={loadNewPokemon}
           handlePokemonLevel={handlePokemonLevel}
-
         />
       ) : (
         <PokemonResults loadNewPokemon={loadNewPokemon} gameState={gameState} />

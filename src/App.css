@@ -1,20 +1,10 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-  --bg-primary: #0b1020;
-  --bg-secondary: #121933;
-  --accent: #ff4d67;
-  --accent-hover: #ff3655;
-  --text-primary: #ffffff;
-  --text-secondary: #a9b0c7;
-
-  --card-bg: rgba(255, 255, 255, 0.04);
-
   font-family:
     Inter,
     system-ui,
@@ -26,49 +16,21 @@
   color-scheme: dark;
 }
 
-html, body, #root {
-    width: 100%;
-    min-height: 100dvh;
-    overflow-x:hidden;
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
 body {
   background:
     radial-gradient(circle at top, #1d2760 20%, #0b1020 50%),
     linear-gradient(180deg, #0b1020 0%, #090d18 100%);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior: none;
-    position: relative;
-
-  }
-
-.spinner {
-  display: block;
-  width: 70%;
-  max-width: 100vh; 
-  margin: 40px auto 0;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  position: relative;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

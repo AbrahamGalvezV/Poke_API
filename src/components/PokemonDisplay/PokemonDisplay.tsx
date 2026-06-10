@@ -1,6 +1,6 @@
 import { GameState } from "../../hooks/use-game-manager";
 import type { Pokemon } from "../../types/pokemon.interface";
-import { Spinner } from "../Spinner";
+import { Spinner } from "../Container/Spinner/Spinner";
 import styles from "./PokemonDisplay.module.css";
 
 interface Props {
@@ -21,7 +21,6 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
 
   return (
     <div className={styles.card}>
-
       <div className={styles.card_header}>
         <h1 className={styles.card_header_text}>
           {showAnswer ? name?.toUpperCase() : "¿CUÁL ES ESTE POKÉMON?"}
@@ -30,10 +29,8 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
           Generación: {level.level} {level.count}
         </p>
       </div>
-      
 
       <div className={styles.card_body}>
-
         <div className={styles.card_grid}></div>
 
         <div className={styles.card_glow}></div>
