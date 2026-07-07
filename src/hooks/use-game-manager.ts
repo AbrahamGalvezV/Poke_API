@@ -21,8 +21,8 @@ export const useGameManager = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [level, setLevel] = useState<Level>(levels[0]);
-
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+  const [fail, setFail] = useState(0);
   
 
   const handlePokemonNameSubmit = useCallback(
@@ -30,11 +30,14 @@ export const useGameManager = () => {
       if (!pokemon) return;
 
       const isValid = pokemonService.isPokemonNameValid(
-        pokemon?.name,
+        pokemon.name,
         userInput,
       );
-
+      
       setGameState(isValid ? GameState.Correct : GameState.Wrong);
+      if (!isValid) {
+        setFail((prev) => prev + 1)
+      }
     },
     [pokemon],
   );
@@ -48,7 +51,6 @@ export const useGameManager = () => {
       setLevel(selectedLevel);
     }
   } 
-
   const loadNewPokemon = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -58,12 +60,9 @@ export const useGameManager = () => {
 
     try {
       const randomPokemon = await pokemonService.getRandomPokemon(level.count);
-
       const elapsedTime = Date.now() - startTime;
       const remainingTime = Math.max(0, 400 - elapsedTime);
-
       await new Promise((resolve) => setTimeout(resolve, remainingTime));
-
 
       setPokemon(randomPokemon);
     } catch (err) {
@@ -71,7 +70,9 @@ export const useGameManager = () => {
     } finally {
       setIsLoading(false);
     }
+  
   }, [level]);
+
 
   useEffect(() => {
     loadNewPokemon();
@@ -86,5 +87,7 @@ export const useGameManager = () => {
     gameState,
     handlePokemonLevel,
     level,
+    fail,
+    setFail
   };
 };

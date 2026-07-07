@@ -11,9 +11,10 @@ interface Props {
     level: string;
     count: number;
   };
+  fail: number;
 }
 
-const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
+const PokemonDisplay = ({ pokemon, isLoading, gameState, level, fail }: Props) => {
   const showAnswer = gameState !== GameState.Playing;
 
   const image = pokemon?.image;
@@ -28,6 +29,7 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level }: Props) => {
         <p className={styles.card_header_level}>
           Generación: {level.level} {level.count}
         </p>
+        <p style={{textAlign: "center"}}>Vidas restantes: {3 - fail}</p>
       </div>
 
       <div className={styles.card_body}>

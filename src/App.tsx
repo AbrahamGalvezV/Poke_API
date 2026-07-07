@@ -16,6 +16,7 @@ const App = () => {
     handlePokemonNameSubmit,
     handlePokemonLevel,
     level,
+    fail,
   } = useGameManager();
 
   if (isLoading) {
@@ -33,6 +34,7 @@ const App = () => {
         isLoading={isLoading}
         gameState={gameState}
         level={level}
+        fail={fail}
       />
 
       {gameState === "playing" ? (
