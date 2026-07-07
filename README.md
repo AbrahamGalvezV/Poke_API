@@ -68,6 +68,10 @@ http://localhost:5173
 5. Descubre si tu respuesta es correcta.
 6. Utiliza **Volver a intentar** para continuar jugando.
 
+#### ¡Te animo a que lo pruebes!
+
+https://abrahamgalvezv.github.io/Poke_API/
+
 ---
 
 ## 📖 Generaciones disponibles

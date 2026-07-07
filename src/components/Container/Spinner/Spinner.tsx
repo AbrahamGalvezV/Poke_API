@@ -1,6 +1,6 @@
 import styles from "./Spinner.module.css"
-import pokemon from "../../../assets/img/pokemon.png"
-import pokeball from "../../../assets/img/pokeball.png"
+import pokemon from "../../../assets/pokemon.png"
+import pokeball from "../../../assets/pokeball.png"
 
 export const Spinner = () => {
 
