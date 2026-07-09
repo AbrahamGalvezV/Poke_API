@@ -31,9 +31,39 @@
     }
 
     .card_header_level {
+        display: flex;
+        justify-content: center;
         color: #fff6db;
         text-align: center;
         font-size: clamp(1rem, 3vw, 1.25rem);
+    }
+
+    .card_header_lifes {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+
+    .life_heart {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        background-color: #db8300;
+        border-radius: 50%;
+        margin: 0 4px;
+        transition: all 0.3s ease;
+    }
+
+    .active {
+        opacity: 1;
+        /* filter: graysacale(0%); */
+    }
+    
+    .lost {
+        /* opacity: 0.2; */
+        background-color: #e10035;
+        transform: scale(0.8);
     }
 
     .card_body {

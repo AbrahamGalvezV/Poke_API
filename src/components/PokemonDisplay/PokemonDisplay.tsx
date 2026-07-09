@@ -20,6 +20,9 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level, fail }: Props) =
   const image = pokemon?.image;
   const name = pokemon?.name;
 
+  // ARREGLADO: Ahora el array tiene sintaxis válida para TypeScript
+  const totalLives = Array.from({ length: 3});
+
   return (
     <div className={styles.card}>
       <div className={styles.card_header}>
@@ -29,14 +32,25 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level, fail }: Props) =
         <p className={styles.card_header_level}>
           Generación: {level.level} {level.count}
         </p>
-        <p style={{textAlign: "center"}}>Vidas restantes: {3 - fail}</p>
+        {/* <p style={{textAlign: "center"}}>Vidas restantes: {3 - fail}</p> */}
+        
+        <div className={styles.card_header_lifes}>
+          {totalLives.map((_, index) => {
+            const isLost = fail > index;
+
+            return (
+              <span
+                key={index}
+                className={`${styles.life_heart} ${isLost ? styles.lost : styles.active}`}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className={styles.card_body}>
         <div className={styles.card_grid}></div>
-
         <div className={styles.card_glow}></div>
-
         <div className={styles.card_floor}></div>
 
         {isLoading ? (
