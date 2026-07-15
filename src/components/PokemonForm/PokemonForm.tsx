@@ -83,7 +83,7 @@ const PokemonForm = ({
           aria-label="¿Cuál es este pokémon?"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          autoFocus
+          // autoFocus
           disabled={gameState !== "playing"}
           spellCheck={false}
           autoComplete="off"
