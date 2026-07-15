@@ -10,9 +10,9 @@ export const GameState = {
 } as const;
 
 type Level = {
-  level: string,
-  count: number
-}
+  level: string;
+  count: number;
+};
 
 export type GameState = (typeof GameState)[keyof typeof GameState];
 
@@ -23,7 +23,7 @@ export const useGameManager = () => {
   const [level, setLevel] = useState<Level>(levels[0]);
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
   const [fail, setFail] = useState(0);
-  
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const handlePokemonNameSubmit = useCallback(
     (userInput: string) => {
@@ -33,46 +33,75 @@ export const useGameManager = () => {
         pokemon.name,
         userInput,
       );
-      
-      setGameState(isValid ? GameState.Correct : GameState.Wrong);
-      if (!isValid) {
-        setFail((prev) => prev + 1)
+
+      if (isValid) {
+        setGameState(GameState.Correct);
+        return;
+      }
+
+      const nextFail = fail + 1;
+      setFail(nextFail);
+
+      if (nextFail >= 3) {
+        setIsGameOver(true);
+      } else {
+        setGameState(GameState.Wrong);
       }
     },
-    [pokemon],
+    [pokemon, fail],
   );
 
-  const handlePokemonLevel = (level:string) => {
-    const selectedLevel = levels.find(
-      (item) => item.level === level,
-    );
-    
+  const handlePokemonLevel = (level: string) => {
+    const selectedLevel = levels.find((item) => item.level === level);
+
     if (selectedLevel) {
       setLevel(selectedLevel);
+      setFail(0);
     }
-  } 
+  };
+
   const loadNewPokemon = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    setGameState(GameState.Playing);
 
     const startTime = Date.now();
 
     try {
       const randomPokemon = await pokemonService.getRandomPokemon(level.count);
+
       const elapsedTime = Date.now() - startTime;
       const remainingTime = Math.max(0, 400 - elapsedTime);
+
       await new Promise((resolve) => setTimeout(resolve, remainingTime));
 
       setPokemon(randomPokemon);
+      setGameState(GameState.Playing);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
       setIsLoading(false);
     }
-  
   }, [level]);
 
+  const handleSkipPokemon = () => {
+    const nextFail = fail + 1;
+
+    setFail(nextFail);
+
+    if (nextFail >= 3) {
+      setIsGameOver(true);
+      return;
+    }
+
+    loadNewPokemon();
+  };
+
+  const resetGame = () => {
+    setFail(0);
+    setIsGameOver(false);
+    setGameState(GameState.Playing);
+    loadNewPokemon();
+  };
 
   useEffect(() => {
     loadNewPokemon();
@@ -88,6 +117,8 @@ export const useGameManager = () => {
     handlePokemonLevel,
     level,
     fail,
-    setFail
+    handleSkipPokemon,
+    isGameOver,
+    resetGame,
   };
 };

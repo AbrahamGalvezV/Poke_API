@@ -6,14 +6,14 @@ import { levels } from "../Container/PokemonLevels";
 interface Props {
   handlePokemonNameSubmit: (userInput: string) => void;
   gameState: GameState;
-  loadNewPokemon: () => void;
+  handleSkipPokemon: () => void;
   handlePokemonLevel: (levelName: string) => void;
 }
 
 const PokemonForm = ({
   handlePokemonNameSubmit,
   gameState,
-  loadNewPokemon,
+  handleSkipPokemon,
   handlePokemonLevel,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,7 +94,7 @@ const PokemonForm = ({
           className={`${styles.input_icon} ${styles.right_icon}`}
           aria-label="Siguiente Pokémon"
           type="button"
-          onClick={loadNewPokemon}
+          onClick={handleSkipPokemon}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,7 @@ import PokemonDisplay from "./components/PokemonDisplay/PokemonDisplay";
 import PokemonForm from "./components/PokemonForm/PokemonForm";
 import PokemonResults from "./components/PokemonResults/PokemonResults";
 import { Spinner } from "./components/Container/Spinner/Spinner";
+import GameOver from "./hooks/GameOver/Gameover";
 import "./App.css";
 
 const App = () => {
@@ -17,6 +18,9 @@ const App = () => {
     handlePokemonLevel,
     level,
     fail,
+    handleSkipPokemon,
+    isGameOver,
+    resetGame,
   } = useGameManager();
 
   if (isLoading) {
@@ -25,6 +29,10 @@ const App = () => {
 
   if (error) {
     return <div className="alert alert-danger text-center">{error}</div>;
+  }
+
+  if (isGameOver) {
+    return <GameOver resetGame={resetGame} />;
   }
 
   return (
@@ -41,7 +49,7 @@ const App = () => {
         <PokemonForm
           gameState={gameState}
           handlePokemonNameSubmit={handlePokemonNameSubmit}
-          loadNewPokemon={loadNewPokemon}
+          handleSkipPokemon={handleSkipPokemon}
           handlePokemonLevel={handlePokemonLevel}
         />
       ) : (
