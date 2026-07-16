@@ -3,13 +3,28 @@ import styles from "./PokemonResults.module.css";
 
 interface Props {
   loadNewPokemon: () => void;
+  resetGame: () => void;
   gameState: GameState;
+  isGameOver: boolean;
 }
 
-const PokemonResults = ({ loadNewPokemon, gameState }: Props) => {
+const PokemonResults = ({
+  loadNewPokemon,
+  gameState,
+  isGameOver,
+  resetGame,
+}: Props) => {
   if (gameState === GameState.Playing) {
     return null;
   }
+
+  const handleClick = () => {
+    if (isGameOver) {
+      resetGame();
+    } else {
+      loadNewPokemon();
+    }
+  };
 
   return (
     <div
@@ -22,8 +37,8 @@ const PokemonResults = ({ loadNewPokemon, gameState }: Props) => {
       >
         {gameState === GameState.Correct ? "¡Correcto!" : "¡Incorrecto!"}
       </h2>
-      <button className={styles.reset_btn} onClick={loadNewPokemon}>
-        Siguiente Pokémon
+      <button className={styles.reset_btn} onClick={handleClick}>
+        {isGameOver ? "Empezar de nuevo" : "Siguiente Pokémon"}
       </button>
     </div>
   );

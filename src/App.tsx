@@ -1,9 +1,9 @@
 import { useGameManager } from "./hooks/use-game-manager";
 import { Container } from "./components/Container/Container";
+import { Spinner } from "./components/Container/Spinner/Spinner";
 import PokemonDisplay from "./components/PokemonDisplay/PokemonDisplay";
 import PokemonForm from "./components/PokemonForm/PokemonForm";
 import PokemonResults from "./components/PokemonResults/PokemonResults";
-import { Spinner } from "./components/Container/Spinner/Spinner";
 import GameOver from "./hooks/GameOver/Gameover";
 import "./App.css";
 
@@ -31,10 +31,6 @@ const App = () => {
     return <div className="alert alert-danger text-center">{error}</div>;
   }
 
-  if (isGameOver) {
-    return <GameOver resetGame={resetGame} />;
-  }
-
   return (
     <Container>
       <PokemonDisplay
@@ -44,7 +40,6 @@ const App = () => {
         level={level}
         fail={fail}
       />
-
       {gameState === "playing" ? (
         <PokemonForm
           gameState={gameState}
@@ -53,8 +48,14 @@ const App = () => {
           handlePokemonLevel={handlePokemonLevel}
         />
       ) : (
-        <PokemonResults loadNewPokemon={loadNewPokemon} gameState={gameState} />
+        <PokemonResults 
+        loadNewPokemon={loadNewPokemon} 
+        gameState={gameState} 
+        isGameOver={isGameOver}
+        resetGame={resetGame}
+        />
       )}
+      {isGameOver && <GameOver/>}
     </Container>
   );
 };

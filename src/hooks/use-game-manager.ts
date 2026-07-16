@@ -43,6 +43,7 @@ export const useGameManager = () => {
       setFail(nextFail);
 
       if (nextFail >= 3) {
+        setGameState(GameState.Wrong);
         setIsGameOver(true);
       } else {
         setGameState(GameState.Wrong);
