@@ -70,6 +70,8 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level, fail }: Props) =
           <img
             src={image}
             alt={name}
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
             className={`${styles.pokemon_image} ${showAnswer ? styles.show : styles.hidden}`}
           />
         )}

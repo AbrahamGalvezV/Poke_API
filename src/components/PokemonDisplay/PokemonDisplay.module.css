@@ -151,7 +151,13 @@
     /* IMAGE */
 
     .pokemon_image {
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-user-drag: none;
+        pointer-events: none;
         position: relative;
+        user-drag: none;
 
         width: clamp(180px, 55vw, 300px);
 

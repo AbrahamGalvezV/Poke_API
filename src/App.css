@@ -19,9 +19,9 @@
 html,
 body,
 #root {
-  width: 100%;
   min-height: 100dvh;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -31,6 +31,5 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overscroll-behavior: none;
   position: relative;
 }
