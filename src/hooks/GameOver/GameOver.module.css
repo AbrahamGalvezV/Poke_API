@@ -1,12 +1,17 @@
 .game_over {
-    margin-top: 20px;
     position: relative;
+
     width: 100%;
     min-height: clamp(120px, 18vw, 160px);
+    margin-top: 15px;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    gap: 16px;
+    padding: 24px 20px;
 
     overflow: hidden;
 
@@ -38,10 +43,10 @@
 
 .game_over_glow {
     position: absolute;
-
+    
     width: 220px;
     height: 220px;
-
+    
     border-radius: 50%;
 
     background: radial-gradient(
@@ -57,6 +62,8 @@
 .game_over_text {
     position: relative;
     z-index: 2;
+
+    margin: 0;
 
     color: rgba(255,255,255,.85);
     font-size: clamp(1rem, 3vw, 1.3rem);

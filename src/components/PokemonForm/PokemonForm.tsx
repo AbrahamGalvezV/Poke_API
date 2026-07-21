@@ -4,15 +4,15 @@ import styles from "./PokemonForm.module.css";
 import { levels } from "../Container/PokemonLevels";
 
 interface Props {
-  handlePokemonNameSubmit: (userInput: string) => void;
   gameState: GameState;
+  handlePokemonNameSubmit: (userInput: string) => void;
   handleSkipPokemon: () => void;
   handlePokemonLevel: (levelName: string) => void;
 }
 
 const PokemonForm = ({
-  handlePokemonNameSubmit,
   gameState,
+  handlePokemonNameSubmit,
   handleSkipPokemon,
   handlePokemonLevel,
 }: Props) => {

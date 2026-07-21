@@ -61,7 +61,7 @@ const isPokemonNameValid = (
   const normalizedUserInput = normalizePokemonName(userInput);
 
   return normalizedPokemonName === normalizedUserInput;
-};
+}; 
 
 export const pokemonService = {
   getRandomPokemon,

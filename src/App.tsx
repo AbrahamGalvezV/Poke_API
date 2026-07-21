@@ -21,6 +21,9 @@ const App = () => {
     handleSkipPokemon,
     isGameOver,
     resetGame,
+    correctPokemon,
+    nextPokemon,
+    textFail,
   } = useGameManager();
 
   if (isLoading) {
@@ -39,7 +42,7 @@ const App = () => {
         gameState={gameState}
         level={level}
         fail={fail}
-      />
+        />
       {gameState === "playing" ? (
         <PokemonForm
           gameState={gameState}
@@ -55,7 +58,11 @@ const App = () => {
         resetGame={resetGame}
         />
       )}
-      {isGameOver && <GameOver/>}
+      {isGameOver && <GameOver
+        correctPokemon={correctPokemon}
+        nextPokemon={nextPokemon}
+        textFail={textFail}
+      />}
     </Container>
   );
 };

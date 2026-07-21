@@ -17,13 +17,17 @@ type Level = {
 export type GameState = (typeof GameState)[keyof typeof GameState];
 
 export const useGameManager = () => {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [level, setLevel] = useState<Level>(levels[0]);
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
-  const [fail, setFail] = useState(0);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [level, setLevel] = useState<Level>(levels[0]);
+  const [correctPokemon, setCorrectPokemon] = useState(0);
+  const [nextPokemon, setNextPokemon] = useState(0);
+  const [textFail, setTextFail] = useState(0);
+  const [fail, setFail] = useState(0);
+  
 
   const handlePokemonNameSubmit = useCallback(
     (userInput: string) => {
@@ -35,6 +39,8 @@ export const useGameManager = () => {
       );
 
       if (isValid) {
+        const correct = correctPokemon + 1;
+        setCorrectPokemon(correct);
         setGameState(GameState.Correct);
         return;
       }
@@ -43,13 +49,12 @@ export const useGameManager = () => {
       setFail(nextFail);
 
       if (nextFail >= 3) {
-        setGameState(GameState.Wrong);
+        setGameState(GameState.Wrong); 
         setIsGameOver(true);
-      } else {
-        setGameState(GameState.Wrong);
-      }
+      } 
+      
     },
-    [pokemon, fail],
+    [pokemon, fail, correctPokemon],
   );
 
   const handlePokemonLevel = (level: string) => {
@@ -58,6 +63,8 @@ export const useGameManager = () => {
     if (selectedLevel) {
       setLevel(selectedLevel);
       setFail(0);
+      setCorrectPokemon(0);
+      setNextPokemon(0);
     }
   };
 
@@ -86,20 +93,24 @@ export const useGameManager = () => {
 
   const handleSkipPokemon = () => {
     const nextFail = fail + 1;
-
+    const buttonNext = nextPokemon + 1;
+    setNextPokemon(buttonNext);
     setFail(nextFail);
-
+    
     if (nextFail >= 3) {
+      setGameState(GameState.Wrong); 
       setIsGameOver(true);
       return;
-    }
+    } 
 
     loadNewPokemon();
   };
 
   const resetGame = () => {
-    setFail(0);
     setIsGameOver(false);
+    setFail(0);
+    setCorrectPokemon(0);
+    setNextPokemon(0);
     setGameState(GameState.Playing);
     loadNewPokemon();
   };
@@ -121,5 +132,8 @@ export const useGameManager = () => {
     handleSkipPokemon,
     isGameOver,
     resetGame,
+    correctPokemon,
+    nextPokemon,
+    textFail,
   };
 };
