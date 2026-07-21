@@ -26,8 +26,19 @@ const PokemonDisplay = ({ pokemon, isLoading, gameState, level, fail }: Props) =
   return (
     <div className={styles.card}>
       <div className={styles.card_header}>
-        <h1 className={styles.card_header_text}>
-          {showAnswer ? name?.toUpperCase() : "¿CUÁL ES ESTE POKÉMON?"}
+        <h1 
+          className={`
+            ${styles.card_header_text}
+            ${
+              gameState === GameState.Correct
+                ? styles.correct
+                : gameState === GameState.Wrong
+                ? styles.wrong
+                : ""
+            }
+          `}
+        >
+              {showAnswer ? name?.toUpperCase() : "¿CUÁL ES ESTE POKÉMON?"}
         </h1>
         <p className={styles.card_header_level}>
           Generación: {level.level} {level.count}

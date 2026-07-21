@@ -17,17 +17,17 @@ type Level = {
 export type GameState = (typeof GameState)[keyof typeof GameState];
 
 export const useGameManager = () => {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [level, setLevel] = useState<Level>(levels[0]);
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
-  const [fail, setFail] = useState(0);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [level, setLevel] = useState<Level>(levels[0]);
   const [correctPokemon, setCorrectPokemon] = useState(0);
-  const [nextPokemon, setNextPokemon] = useState(0);
   const [textFail, setTextFail] = useState(0);
-  
+  const [nextPokemon, setNextPokemon] = useState(0);
+
+  const fail = textFail + nextPokemon;
 
   const handlePokemonNameSubmit = useCallback(
     (userInput: string) => {
@@ -39,33 +39,39 @@ export const useGameManager = () => {
       );
 
       if (isValid) {
-        const correct = correctPokemon + 1;
-        setCorrectPokemon(correct);
+        setCorrectPokemon((prev) => prev + 1);
         setGameState(GameState.Correct);
         return;
       }
 
       const nextFail = fail + 1;
-      setFail(nextFail);
+
+      setTextFail((prev) => prev + 1);
 
       if (nextFail >= 3) {
-        setGameState(GameState.Wrong); 
+        setGameState(GameState.Wrong);
         setIsGameOver(true);
-      } 
-      
+      } else {
+        setGameState(GameState.Wrong);
+      }
     },
-    [pokemon, fail, correctPokemon],
+    [pokemon, fail],
   );
 
   const handlePokemonLevel = (level: string) => {
-    const selectedLevel = levels.find((item) => item.level === level);
+    const selectedLevel = levels.find(
+      (item) => item.level === level,
+    );
 
-    if (selectedLevel) {
-      setLevel(selectedLevel);
-      setFail(0);
-      setCorrectPokemon(0);
-      setNextPokemon(0);
-    }
+    if (!selectedLevel) return;
+
+    setLevel(selectedLevel);
+
+    setTextFail(0);
+    setNextPokemon(0);
+    setCorrectPokemon(0);
+    setIsGameOver(false);
+    setGameState(GameState.Playing);
   };
 
   const loadNewPokemon = useCallback(async () => {
@@ -75,17 +81,25 @@ export const useGameManager = () => {
     const startTime = Date.now();
 
     try {
-      const randomPokemon = await pokemonService.getRandomPokemon(level.count);
+      const randomPokemon = await pokemonService.getRandomPokemon(
+        level.count,
+      );
 
       const elapsedTime = Date.now() - startTime;
       const remainingTime = Math.max(0, 400 - elapsedTime);
 
-      await new Promise((resolve) => setTimeout(resolve, remainingTime));
+      await new Promise((resolve) =>
+        setTimeout(resolve, remainingTime),
+      );
 
       setPokemon(randomPokemon);
       setGameState(GameState.Playing);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "An error occurred",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -93,26 +107,25 @@ export const useGameManager = () => {
 
   const handleSkipPokemon = () => {
     const nextFail = fail + 1;
-    const buttonNext = nextPokemon + 1;
-    setNextPokemon(buttonNext);
-    setFail(nextFail);
-    
+
+    setNextPokemon((prev) => prev + 1);
+
     if (nextFail >= 3) {
-      setGameState(GameState.Wrong); 
+      setGameState(GameState.Wrong);
       setIsGameOver(true);
       return;
-    } 
+    }
 
     loadNewPokemon();
   };
 
   const resetGame = () => {
     setIsGameOver(false);
-    setFail(0);
     setCorrectPokemon(0);
+    setTextFail(0);
     setNextPokemon(0);
     setGameState(GameState.Playing);
-    loadNewPokemon();
+    loadNewPokemon()
   };
 
   useEffect(() => {
@@ -123,17 +136,17 @@ export const useGameManager = () => {
     pokemon,
     isLoading,
     error,
-    loadNewPokemon,
-    handlePokemonNameSubmit,
     gameState,
-    handlePokemonLevel,
+    isGameOver,
     level,
     fail,
-    handleSkipPokemon,
-    isGameOver,
-    resetGame,
-    correctPokemon,
-    nextPokemon,
     textFail,
+    nextPokemon,
+    correctPokemon,
+    loadNewPokemon,
+    handlePokemonNameSubmit,
+    handlePokemonLevel,
+    handleSkipPokemon,
+    resetGame,
   };
 };

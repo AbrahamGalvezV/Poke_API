@@ -30,6 +30,14 @@
         overflow-wrap: break-word;
     }
 
+    .correct {
+        color: rgb(108, 215, 0);
+    }
+
+    .wrong {
+        color: rgb(212, 0, 0);
+    }
+
     .card_header_level {
         display: flex;
         justify-content: center;
@@ -62,7 +70,7 @@
     
     .lost {
         /* opacity: 0.2; */
-        background-color: #e10035;
+        background-color: rgb(212, 0, 0);
         transform: scale(0.8);
     }
 
