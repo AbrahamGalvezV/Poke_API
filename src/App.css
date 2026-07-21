@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
 }
 
@@ -31,5 +32,32 @@ body {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
+}
+
+.app {
+  transform-origin: top center;
+}
+
+@media (max-height: 900px) {
+  .app {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-height: 800px) {
+  .app {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-height: 700px) {
+  .app {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-height: 600px) {
+  .app {
+    transform: scale(0.80);
+  }
 }

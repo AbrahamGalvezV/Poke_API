@@ -35,35 +35,39 @@ const App = () => {
   }
 
   return (
-    <Container>
-      <PokemonDisplay
-        pokemon={pokemon}
-        isLoading={isLoading}
-        gameState={gameState}
-        level={level}
-        fail={fail}
-        />
-      {gameState === "playing" ? (
-        <PokemonForm
+    <div className="app">
+      <Container>
+        <PokemonDisplay
+          pokemon={pokemon}
+          isLoading={isLoading}
           gameState={gameState}
-          handlePokemonNameSubmit={handlePokemonNameSubmit}
-          handleSkipPokemon={handleSkipPokemon}
-          handlePokemonLevel={handlePokemonLevel}
+          level={level}
+          fail={fail}
         />
-      ) : (
-        <PokemonResults 
-        loadNewPokemon={loadNewPokemon} 
-        gameState={gameState} 
-        isGameOver={isGameOver}
-        resetGame={resetGame}
-        />
-      )}
-      {isGameOver && <GameOver
-        correctPokemon={correctPokemon}
-        nextPokemon={nextPokemon}
-        textFail={textFail}
-      />}
-    </Container>
+        {gameState === "playing" ? (
+          <PokemonForm
+            gameState={gameState}
+            handlePokemonNameSubmit={handlePokemonNameSubmit}
+            handleSkipPokemon={handleSkipPokemon}
+            handlePokemonLevel={handlePokemonLevel}
+          />
+        ) : (
+          <PokemonResults
+            loadNewPokemon={loadNewPokemon}
+            gameState={gameState}
+            isGameOver={isGameOver}
+            resetGame={resetGame}
+          />
+        )}
+        {isGameOver && (
+          <GameOver
+            correctPokemon={correctPokemon}
+            nextPokemon={nextPokemon}
+            textFail={textFail}
+          />
+        )}
+      </Container>
+    </div>
   );
 };
 
