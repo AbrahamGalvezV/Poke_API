@@ -17,16 +17,16 @@ type Level = {
 export type GameState = (typeof GameState)[keyof typeof GameState];
 
 export const useGameManager = () => {
-  const [gameState, setGameState] = useState<GameState>(GameState.Playing);
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isGameOver, setIsGameOver] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [level, setLevel] = useState<Level>(levels[0]);
+  const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+  const [fail, setFail] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [correctPokemon, setCorrectPokemon] = useState(0);
   const [nextPokemon, setNextPokemon] = useState(0);
   const [textFail, setTextFail] = useState(0);
-  const [fail, setFail] = useState(0);
   
 
   const handlePokemonNameSubmit = useCallback(
